@@ -25,3 +25,10 @@ D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\obj\Debug\net6.0\DotNETAPI.dll
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\obj\Debug\net6.0\ref\DotNETAPI.dll
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\obj\Debug\net6.0\DotNETAPI.pdb
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\obj\Debug\net6.0\DotNETAPI.genruntimeconfig.cache
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

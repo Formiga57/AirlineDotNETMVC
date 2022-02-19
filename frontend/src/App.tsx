@@ -1,10 +1,10 @@
 import React, {useEffect,useState} from 'react';
-import api from './services/api';
+import Api from './services/api';
 
 function App() {
   const [welcomeMessage, setWelcomeMessage] = useState<string>("");
   useEffect(()=>{
-    const apiInstance = new api()
+    const apiInstance = new Api()
     setWelcomeMessage(apiInstance.getWelcomeMessages()[0])
   },[])
   return (
