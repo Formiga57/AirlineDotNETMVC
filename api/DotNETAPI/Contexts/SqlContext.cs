@@ -9,7 +9,12 @@ public class SqlContext : DbContext
     {
         
     }
-
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Assento>()
+            .Property(b => b.Reservado)
+            .HasDefaultValue(false);
+    }
     public DbSet<Usuário> Usuários { get; set; }
     public DbSet<UsuárioVoo> UsuáriosVoos { get; set; }
     public DbSet<Voo> Voos { get; set; }

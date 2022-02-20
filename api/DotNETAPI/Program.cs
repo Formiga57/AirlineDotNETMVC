@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddDbContext<SqlContext>(opt =>
     opt.UseSqlServer(
-        "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp2;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
+        "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
 builder.Services.AddScoped<ISqlRepo, SqlRepo>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
