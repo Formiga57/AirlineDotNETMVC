@@ -13,6 +13,4 @@ public class UsuárioVoo
     [ForeignKey("Voo")]
     public int VooFk { get; set; }
     public Voo Voo { get; set; }
-    [Required]
-    public int Assento { get; set; }
 }

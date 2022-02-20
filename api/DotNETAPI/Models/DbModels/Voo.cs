@@ -7,15 +7,10 @@ public class Voo
 {
     [Key]
     public int Id { get; set; }
-    [Required]
-    [MinLength(3)]
-    [MaxLength(30)]
-    public string Origem { get; set; }
-    [Required]
-    [MinLength(3)]
-    [MaxLength(30)]
-    public string Destino { get; set; }
-    [Required]
+    [ForeignKey("OrigemId")]
+    public Aeroporto? Origem { get; set; }
+    [ForeignKey("DestinoId")]
+    public Aeroporto? Destino { get; set; }
     [ForeignKey("Avião")]
     public int AviãoFk { get; set; }
     public Avião Avião { get; set; }
