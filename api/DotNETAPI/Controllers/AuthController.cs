@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using DefaultNamespace;
 using DotNETAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 namespace DotNETAPI.Controllers;
@@ -14,8 +15,9 @@ public class AuthController : ControllerBase
 
     [HttpPost]
     [Route("login")]
-    public string GenerateJwt([FromServices] ITokenService tokenService)
+    public string GenerateJwt([FromServices] ITokenService tokenService,[FromServices] ISqlRepo sqlRepo)
     {
+        sqlRepo.AddUser("Formiga");
         return tokenService.GenerateToken();
     }
 }

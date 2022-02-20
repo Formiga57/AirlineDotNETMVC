@@ -1,4 +1,7 @@
+using DefaultNamespace;
+using DotNETAPI.Contexts;
 using DotNETAPI.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.AddDbContext<SqlContext>(opt =>
+    opt.UseSqlServer(
+        "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp2;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
+builder.Services.AddScoped<ISqlRepo, SqlRepo>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,5 +29,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+
 
 app.Run();
