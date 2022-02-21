@@ -4,9 +4,7 @@ using DotNETAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddDbContext<SqlContext>(opt =>
@@ -29,7 +27,13 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+var options = new DbContextOptionsBuilder<SqlContext>();
+options.UseSqlServer(
+    "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp;Server=localhost;Password=formiga123;TrustServerCertificate=True");
+SqlContext context = new SqlContext(options.Options);
+UsuárioService us = new UsuárioService(context);
+VooService vs = new VooService(context);
+// us.ObterVoosAgendados(2);
+vs.AdicionarVoo(1,3,1,"JJ5432",DateTime.Now.AddDays(1));
 
-
-
-app.Run();
+app.Run("http://*:5000");

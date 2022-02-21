@@ -7,9 +7,11 @@ public class Voo
 {
     [Key]
     public int Id { get; set; }
-    [ForeignKey("OrigemId")]
+    [ForeignKey("Origem")]
+    public int? OrigemId { get; set; }
     public Aeroporto? Origem { get; set; }
-    [ForeignKey("DestinoId")]
+    [ForeignKey("Destino")]
+    public int? DestinoId { get; set; }
     public Aeroporto? Destino { get; set; }
     [ForeignKey("Avião")]
     public int AviãoFk { get; set; }

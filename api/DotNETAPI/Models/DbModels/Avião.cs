@@ -9,6 +9,6 @@ public class Avião
     public int Id { get; set; }
     [Column(TypeName = "varchar(4)")] 
     public string Cód { get; set; }
-    public int AssentosTotais { get; set; }
+    public int Seções { get; set; }
     public int Fileiras { get; set; }
 }

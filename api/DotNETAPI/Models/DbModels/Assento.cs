@@ -10,7 +10,7 @@ public class Assento
     [MaxLength(40)]
     public string? NomeViajante { get; set; }
     [Column(TypeName = "char(1)")]
-    public string Fileira { get; set; }
+    public char Fileira { get; set; }
     public int Seção { get; set; }
     public bool Reservado { get; set; }
     [ForeignKey("Voo")]
