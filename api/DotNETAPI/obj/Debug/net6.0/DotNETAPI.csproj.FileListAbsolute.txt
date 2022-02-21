@@ -75,3 +75,4 @@ D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\runtimes\win-x86\n
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Humanizer.dll
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\BCrypt.Net-Next.dll

@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotNETAPI.Services;
 
-public class UsuárioService
+public class UsuárioService : IUsuárioService
 {
     public SqlContext _context;
     public UsuárioService(SqlContext context)
     {
         _context = context;
     }
-
-    public void AdicionarUsuário(string nome, int idade, float milhas)
+    public int AdicionarUsuário(string nome, int idade, string hashSenha,string email)
     {
-        Usuário usuário = new Usuário {Idade = idade, Milhas = milhas, Nome = nome};
+        Usuário usuário = new Usuário {Idade = idade, Milhas = 0, Nome = nome,HashSenha = hashSenha,Email = email};
         _context.Usuários.Add(usuário);
         _context.SaveChanges();
+        return usuário.Id;
     }
     public List<Assento> ObterVoosAgendados(int idUsuário)
     {
@@ -27,5 +27,10 @@ public class UsuárioService
             .Include(a => a.Voo.Destino)
             .Include(a => a.Usuário)
             .ToList();
+    }
+
+    public Usuário? EncontrarUsuário(string email)
+    {
+        return _context.Usuários.FirstOrDefault(u=>u.Email == email);
     }
 }

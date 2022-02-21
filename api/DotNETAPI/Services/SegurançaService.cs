@@ -5,17 +5,15 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DotNETAPI.Services;
 
-public interface ITokenService
+public interface ISegurançaService
 {
-    public string GenerateToken();
+    public string GerarToken(string Name);
 }
 
-public class TokenService : ITokenService
+public class SegurançaService : ISegurançaService
 {
-    //TODO: Criar modelo de usuário e inserir informações para geração da chave
-    public string GenerateToken()
+    public string GerarToken(string Name)
     {
-        //TODO: Adicionar verificação se usuário existe
         JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
         byte[] key = Encoding.ASCII.GetBytes(Settings.JWTKey);
         SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -24,7 +22,7 @@ public class TokenService : ITokenService
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature),
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name,"Formiga")
+                new Claim(ClaimTypes.Name,Name)
             })
         };
         SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);

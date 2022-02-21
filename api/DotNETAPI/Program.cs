@@ -7,11 +7,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.AddSingleton<ISegurançaService, SegurançaService>();
 builder.Services.AddDbContext<SqlContext>(opt =>
     opt.UseSqlServer(
         "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
 builder.Services.AddScoped<ISqlRepo, SqlRepo>();
+builder.Services.AddScoped<IUsuárioService, UsuárioService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -42,4 +43,6 @@ AssentoService assentoService = new AssentoService(context);
 // assentoService.ComprarAssento(1,"Vinícius Formigone",1,17,'A');
 // assentoService.ComprarAssento(1,"Karina Sousa Costa",1,17,'B');
 // us.ObterVoosAgendados(1);
-app.Run("http://*:5000");
+var buscarVoos = vs.BuscarVoos(4, 7);
+Console.WriteLine("Voos Buscados!");
+app.Run("https://*:5000");

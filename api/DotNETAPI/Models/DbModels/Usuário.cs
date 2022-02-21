@@ -15,5 +15,9 @@ public class Usuário
     [MaxLength(150)]
     public int Idade { get; set; }
     [Required]
+    public string Email { get; set; }
+    [Required]
+    public string HashSenha { get; set; }
+    [Required]
     public float Milhas { get; set; }
 }
