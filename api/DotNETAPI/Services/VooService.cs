@@ -34,4 +34,29 @@ public class VooService
         }
         _context.SaveChanges();
     }
+
+    public List<Voo> BuscarVoos(int? origemId, int? destinoId)
+    {
+        IQueryable<Voo> resultado = null;
+        if (origemId != null && destinoId != null)
+        {
+            resultado = _context.Voos.Where(v => v.OrigemId == origemId && v.DestinoId == destinoId);   
+        }else if (origemId != null)
+        {
+            resultado = _context.Voos.Where(v => v.OrigemId == origemId);
+        }else if (destinoId != null)
+        {
+            resultado = _context.Voos.Where(v => v.DestinoId == destinoId);
+        }
+
+        if (resultado != null)
+        {
+            return resultado
+                .Include(v => v.Avião)
+                .Include(v => v.Origem)
+                .Include(v => v.Destino)
+                .ToList();
+        }
+        return new List<Voo>();
+    }
 }
