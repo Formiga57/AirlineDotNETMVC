@@ -26,7 +26,7 @@ public class VooService
         }
         for (int i = 1; i <= avião.Seções; i++)
         {
-            for (int j = 0; j <= avião.Fileiras; j++)
+            for (int j = 0; j < avião.Fileiras; j++)
             {
                 Assento assento = new Assento{Fileira = FileiraLetras[j],Seção = i,VooFk = voo.Id};
                 _context.Assentos.Add(assento);

@@ -18,13 +18,14 @@ public class UsuárioService
         _context.Usuários.Add(usuário);
         _context.SaveChanges();
     }
-    public List<UsuárioVoo> ObterVoosAgendados(int idUsuário)
+    public List<Assento> ObterVoosAgendados(int idUsuário)
     {
-        return _context.UsuáriosVoos.Where(u=>u.UsuárioFk == idUsuário)
-            .Include(m=>m.Usuário)
-            .Include(m=>m.Voo).ThenInclude(voo=>voo.Avião)
-            .Include(m=>m.Voo).ThenInclude(voo=>voo.Origem)
-            .Include(m=>m.Voo).ThenInclude(voo=>voo.Destino)
+        return _context.Assentos.Where(a => a.UsuárioFk == idUsuário)
+            .Include(a => a.Voo)
+            .Include(a => a.Voo.Avião)
+            .Include(a => a.Voo.Origem)
+            .Include(a => a.Voo.Destino)
+            .Include(a => a.Usuário)
             .ToList();
     }
 }

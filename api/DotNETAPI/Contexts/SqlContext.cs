@@ -42,7 +42,6 @@ public class SqlContext : DbContext
         });
     }
     public DbSet<Usuário> Usuários { get; set; }
-    public DbSet<UsuárioVoo> UsuáriosVoos { get; set; }
     public DbSet<Voo> Voos { get; set; }
     public DbSet<Aeroporto> Aeroportos { get; set; }
     public DbSet<Cidade> Cidades { get; set; }

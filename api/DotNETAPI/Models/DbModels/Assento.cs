@@ -16,6 +16,7 @@ public class Assento
     [ForeignKey("Voo")]
     public int VooFk { get; set; }
     public Voo Voo { get; set; }
-    [ForeignKey("UsuárioVoo")]
+    [ForeignKey("Usuário")]
+    public int? UsuárioFk { get; set; }
     public Usuário? Usuário { get; set; }
 }
