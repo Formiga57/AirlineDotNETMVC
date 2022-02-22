@@ -1,13 +1,15 @@
-using System.Diagnostics;
 using DefaultNamespace;
+using DotNETAPI;
 using DotNETAPI.Contexts;
 using DotNETAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+MapperProfile mapperProfile= new();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ISegurançaService, SegurançaService>();
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<SqlContext>(opt =>
     opt.UseSqlServer(
         "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
@@ -20,11 +22,12 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
+app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

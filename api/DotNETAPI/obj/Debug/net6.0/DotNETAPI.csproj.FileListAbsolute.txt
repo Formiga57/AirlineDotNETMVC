@@ -76,3 +76,5 @@ D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\runtimes\win\lib\n
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Humanizer.dll
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\BCrypt.Net-Next.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\AutoMapper.dll
+D:\Workspaces\AirlineDotNETMVC\api\DotNETAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

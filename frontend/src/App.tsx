@@ -1,15 +1,29 @@
 import React, {useEffect,useState} from 'react';
-import Api from './services/api';
-
+import Login from './components/Login';
+import {TemaGlobal} from "./styles/temas";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+} from 'react-router-dom';
+import RotaPrivada from "./components/RotaPrivada";
+import MeusVoos from "./components/MeusVoos";
+import Index from "./components/Index";
 function App() {
-  const [welcomeMessage, setWelcomeMessage] = useState<string>("");
-  useEffect(()=>{
-    const apiInstance = new Api()
-    setWelcomeMessage(apiInstance.getWelcomeMessages()[0])
-  },[])
-  return (
-    <div>Teste hahaha! {welcomeMessage}</div>
-  );
+  return(
+      <>
+      <TemaGlobal />
+      <Router>
+        <Routes>
+            <Route path={"/login"} element={<Login />} />
+            <Route element={<RotaPrivada />}>
+                    <Route path={"/meusvoos"} element={<MeusVoos/>}/>
+            </Route>
+            <Route path={"/"} element={<Index />}/>
+        </Routes>
+      </Router>
+      </>
+  )
 }
 
 export default App;
