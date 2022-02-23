@@ -1,6 +1,7 @@
 ﻿import {createGlobalStyle} from "styled-components";
 export const TemaPadrão = {
     cores:{
+        principal:'rgb(241,219,75)',
         headerBg:'rgba(241,219,75,0.6)',
         corBotao:'#CEE7E6',
         corBotaoHover:'#76aeda',

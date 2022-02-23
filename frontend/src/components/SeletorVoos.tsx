@@ -1,5 +1,17 @@
 ﻿import React from 'react';
 import styled from "styled-components";
+import SeletorLista from "./SeletorLista";
+import {FaPlaneDeparture,FaPlaneArrival} from "react-icons/fa";
+
+interface IDados {
+    key:number,
+    nome:string,
+}
+
+const dados:IDados[] = [
+    {key:1,nome:"CNF - Confins"},
+    {key:2,nome:"CGH - Congonhas"},
+]
 
 const Container = styled.div`
   margin:auto;
@@ -10,30 +22,25 @@ const Container = styled.div`
   background-color: rgba(255,255,255,0.8);
   margin-top: -180px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const SeletorVoos = () => {
     return(<Container>
-        <label>Origem</label>
-        <select placeholder={"Origem"}>
-            <option selected disabled>Origem</option>
-            <option>Congonhas - SP</option>
-            <option>Confins - BH</option>
-            <option>Guarulhos - SP</option>
-            <option>Santos Dumont - RJ</option>
-        </select>
-        <br />
-        <label>Destino</label>
-        <select placeholder={"Destino"}>
-            <option selected disabled>Destino</option>
-            <option>Congonhas - SP</option>
-            <option>Confins - BH</option>
-            <option>Guarulhos - SP</option>
-            <option>Santos Dumont - RJ</option>
-        </select>
-        <br />
-        <label>Data de Ida</label>
-        <input type={"date"}/>
+        <SeletorLista dados={dados} width={"270px"} height={"50px"} placeholder={
+            <>
+            <FaPlaneDeparture color={"black"} fontSize={"22pt"}/>
+            <p style={{fontSize:"18pt"}}>Digite a Origem</p>
+            </>
+        }/>
+        <SeletorLista dados={dados} width={"270px"} height={"50px"} placeholder={
+            <>
+                <FaPlaneArrival color={"black"} fontSize={"22pt"}/>
+                <p style={{fontSize:"18pt"}}>Digite o Destino</p>
+            </>
+        }/>
     </Container>)
 }
 
