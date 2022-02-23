@@ -1,21 +1,27 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using DotNETAPI.Contexts;
+using DotNETAPI.Models.DbModels;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DotNETAPI.Services;
 
 public interface ISegurançaService
 {
-    public string GerarToken(string Name);
+    public string GerarToken(string email);
     public string? VerificarToken(string token);
+    public string GerarRefresh(string email);
+    public string? VerificarRefresh(string refresh);
 }
 
 public class SegurançaService : ISegurançaService
 {
-    public SegurançaService()
+    public SqlContext _context;
+    public SegurançaService(SqlContext context)
     {
-        
+        _context = context;
     }
     public string GerarToken(string email)
     {
@@ -55,5 +61,34 @@ public class SegurançaService : ISegurançaService
         {
             return null;
         }
+    }
+
+    public string GerarRefresh(string email)
+    {
+        var randomNumber = new byte[32];
+        using var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(randomNumber);
+        string refreshToken = Convert.ToBase64String(randomNumber);
+        var oldToken = _context.RefreshTokens.FirstOrDefault(x => x.Email == email);
+        RefreshToken refreshTokenmodel = new RefreshToken {Email = email, Token = refreshToken};
+        if (oldToken == null)
+        {
+            _context.RefreshTokens.Add(refreshTokenmodel);
+            _context.SaveChanges();
+        }
+        else
+        {
+            oldToken.Token = refreshToken;
+            _context.SaveChanges();
+        }
+
+        return refreshToken;
+    }
+
+    public string? VerificarRefresh(string refresh)
+    {
+        var refreshTokens = _context.RefreshTokens.FirstOrDefault(x => x.Token == refresh);
+        if (refreshTokens == null) {return null;}
+        return refreshTokens.Email;
     }
 }

@@ -14,6 +14,9 @@ public class SqlContext : DbContext
         modelBuilder.Entity<Assento>()
             .Property(b => b.Reservado)
             .HasDefaultValue(false);
+        modelBuilder.Entity<Usuário>()
+            .Property(b => b.Administrador)
+            .HasDefaultValue(false);
         modelBuilder.Entity<Cidade>().HasData(new Cidade[] {
             new Cidade {Id = 1,Nome = "São Paulo",UF="SP"},
             new Cidade {Id = 2,Nome = "Belo Horizonte",UF="BH"},
@@ -46,6 +49,7 @@ public class SqlContext : DbContext
     public DbSet<Aeroporto> Aeroportos { get; set; }
     public DbSet<Cidade> Cidades { get; set; }
     public DbSet<AeroportoCidade> AeroportosCidades { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<Avião> Aviões { get; set; }
     public DbSet<Assento> Assentos { get; set; }
 }

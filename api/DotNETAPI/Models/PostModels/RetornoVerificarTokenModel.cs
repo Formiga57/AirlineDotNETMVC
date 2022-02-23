@@ -6,6 +6,7 @@ public class RetornoVerificarTokenModel
 {
     public bool Verificado { get; set; }
     public UsuárioInfos? Usuário { get; set; }
+    public string? Token { get; set; }
 }
 
 public class UsuárioInfos

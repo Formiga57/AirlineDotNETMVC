@@ -8,16 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 MapperProfile mapperProfile= new();
 builder.Services.AddControllers();
-builder.Services.AddSingleton<ISegurançaService, SegurançaService>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<SqlContext>(opt =>
     opt.UseSqlServer(
         "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
 builder.Services.AddScoped<ISqlRepo, SqlRepo>();
 builder.Services.AddScoped<IUsuárioService, UsuárioService>();
+builder.Services.AddScoped<ISegurançaService, SegurançaService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -27,7 +27,7 @@ var app = builder.Build();
 //     app.UseSwagger();
 //     app.UseSwaggerUI();
 // }
-app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.UseCors(b => b.AllowCredentials().WithOrigins("http://localhost:3000").AllowAnyHeader());
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

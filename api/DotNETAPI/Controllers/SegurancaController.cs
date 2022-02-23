@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Security.Cryptography;
 using AutoMapper;
 using DefaultNamespace;
+using System.Web;
 using DotNETAPI.Models.DbModels;
 using DotNETAPI.Models.PostModels;
 using DotNETAPI.Services;
@@ -25,6 +27,14 @@ public class SegurancaController : ControllerBase
             return Unauthorized("Senha errada");
         }
         string token = segurançaService.GerarToken(loginModel.Email);
+        string refresh = segurançaService.GerarRefresh(loginModel.Email);
+        Response.Cookies.Append("refresh",refresh,new CookieOptions
+        {
+            Secure = true,
+            SameSite = SameSiteMode.None,
+            HttpOnly = true,
+            MaxAge = TimeSpan.FromDays(5),
+        });
         return Ok(token);
     }
     [HttpPost]
@@ -59,8 +69,26 @@ public class SegurancaController : ControllerBase
 
     [HttpGet]
     [Route("refresh")]
-    public IActionResult Refresh()
+    public ActionResult<RetornoVerificarTokenModel> Refresh([FromServices] IMapper mapper,[FromServices] ISegurançaService segurançaService,[FromServices] IUsuárioService usuárioService)
     {
-        return Ok();
+        string? refreshToken = Request.Cookies["refresh"];
+        if (refreshToken == null) { return Unauthorized(); }
+        string email = segurançaService.VerificarRefresh(refreshToken);
+        string refresh = segurançaService.GerarRefresh(email);
+        Response.Cookies.Append("refresh",refresh,new CookieOptions
+        {
+            Secure = true,
+            SameSite = SameSiteMode.None,
+            HttpOnly = true,
+            MaxAge = TimeSpan.FromDays(5),
+        });
+        Usuário usuário = usuárioService.EncontrarUsuário(email);
+        RetornoVerificarTokenModel retorno = new RetornoVerificarTokenModel
+        {
+            Verificado = true
+        };
+        retorno.Usuário = mapper.Map<UsuárioInfos>(usuário);
+        retorno.Token = segurançaService.GerarToken(email);
+        return Ok(retorno);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DotNETAPI.Models.DbModels;
 public class Usuário
@@ -20,4 +19,5 @@ public class Usuário
     public string HashSenha { get; set; }
     [Required]
     public float Milhas { get; set; }
+    public bool Administrador { get; set; }
 }
