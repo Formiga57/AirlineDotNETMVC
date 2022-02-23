@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import SeletorLista from "./SeletorLista";
 import {FaPlaneDeparture,FaPlaneArrival} from "react-icons/fa";
+import Botao from "./Botao";
 
 interface IDados {
     key:number,
@@ -14,13 +15,12 @@ const dados:IDados[] = [
 ]
 
 const Container = styled.div`
-  margin:auto;
-  height:300px;
+  height: 300px;
   border-radius: 8px;
   z-index: 15;
-  width:60%;
-  background-color: rgba(255,255,255,0.8);
-  margin-top: -180px;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: -180px auto auto;
   position: relative;
   display: flex;
   justify-content: center;
@@ -41,6 +41,9 @@ const SeletorVoos = () => {
                 <p style={{fontSize:"18pt"}}>Digite o Destino</p>
             </>
         }/>
+        <Botao height={"30px"}>
+            Buscar
+        </Botao>
     </Container>)
 }
 
