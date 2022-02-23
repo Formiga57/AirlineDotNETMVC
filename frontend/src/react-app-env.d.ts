@@ -8,6 +8,7 @@ interface ILoginForm {
 interface RetornoVerificarToken{
     verificado:boolean,
     usuário:IUserInfos,
+    token?:string,
 }
 
 interface IUserInfos {

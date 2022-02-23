@@ -51,7 +51,7 @@ function Login() {
         const api = new Api()
         api.VerificarLogin(loginForm).then(tokenRecebido => {
             setToken(tokenRecebido)
-            navigate('/meusvoos')
+            navigate('/')
         })
     }
     return (

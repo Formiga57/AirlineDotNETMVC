@@ -23,7 +23,7 @@ const RotaPrivada = () => {
         }
     }, []);
     if(verificado){
-        return acesso ? <Outlet /> :  <Navigate to={"/"} replace />
+        return acesso ? <Outlet /> :  <Navigate to={"/login"} replace />
     }else{
         return <div>Carregando...</div>
     }

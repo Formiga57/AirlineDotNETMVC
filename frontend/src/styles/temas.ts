@@ -1,7 +1,10 @@
 ﻿import {createGlobalStyle} from "styled-components";
 export const TemaPadrão = {
     cores:{
-        headerBg:'#F1DB4B',
+        headerBg:'rgba(241,219,75,0.6)',
+        corBotao:'#CEE7E6',
+        corBotaoHover:'#76aeda',
+        corTexto:'#283044',
     }
 }
 export const TemaGlobal = createGlobalStyle`

@@ -2,7 +2,7 @@
 
 interface IAuthContext{
     token?:string,
-    setToken:(token:string)=>void,
+    setToken:(token?:string)=>void,
     usuarioInfo?:IUserInfos,
     setUsuarioInfo:(usuárioInfo:IUserInfos)=>void,
 }
@@ -10,11 +10,11 @@ interface IAuthContext{
 export const AuthContext = createContext<IAuthContext>({
     setUsuarioInfo(token: IUserInfos): void {
     },
-    setToken(token: string): void {
+    setToken(token?: string): void {
     }
 });
 export const AuthProvider: React.FC  = ({children}) =>{
-    const [token, setToken] = useState<string>("");
+    const [token, setToken] = useState<string | undefined>("");
     const [usuarioInfo, setUsuarioInfo] = useState<IUserInfos>();
     return (
     <AuthContext.Provider value={{token,setToken,usuarioInfo,setUsuarioInfo}}>

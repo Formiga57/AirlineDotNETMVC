@@ -1,6 +1,7 @@
 ﻿import axios from 'axios';
 const axiosConfig = {
-    baseURL:"https://localhost:5000"
+    baseURL:"https://localhost:5000",
+    withCredentials:true
 }
 const api = axios.create(axiosConfig)
 class Api {
@@ -17,6 +18,16 @@ class Api {
     async VerificarToken(token:string):Promise<RetornoVerificarToken>{
         return new Promise(async (resolve, reject) => {
             const res = await api.post("/Seguranca/verificarToken", {Token:token})
+            if(res.status === 200){
+                resolve(res.data)
+            }else{
+                reject()
+            }
+        })
+    }
+    async RefreshToken():Promise<RetornoVerificarToken>{
+        return new Promise(async (resolve, reject) => {
+            const res = await api.get("/Seguranca/refresh")
             if(res.status === 200){
                 resolve(res.data)
             }else{
