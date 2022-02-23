@@ -35,5 +35,19 @@ class Api {
             }
         })
     }
+    async ObterVoos():Promise<IVoos[]>{
+        return new Promise(async (resolve, reject) => {
+            const res = await api.get("/Cache/aeroportosDisponiveis")
+            if(res.status === 200){
+                let Voos:IVoos[] = []
+                Object.keys(res.data).forEach(key=>{
+                    Voos.push({key:parseInt(key),nome:res.data[key]})
+                })
+                resolve(Voos)
+            }else{
+                reject()
+            }
+        })
+    }
 }
 export default Api

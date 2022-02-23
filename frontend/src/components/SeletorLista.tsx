@@ -123,14 +123,20 @@ const SeletorLista: React.FC<IProps> = (props) => {
             onChange={((e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value))}
             onBlur={() => {
                 if (inputText.length <= 0) {
-                    // setInputFocus(false)
+                    setInputFocus(false)
                 }
             }}/>
             {!inputFocus && inputText.length <= 0 ? props.placeholder : null}
         </ContainerFechado>
         {inputFocus ? (
         <DropDownDiv>
-            {props.dados.map((i:IDados,j:number)=>{
+            {props.dados.filter(x=>{
+                if(inputText.length < 1){
+                    return
+                }else if(x.nome.toLowerCase().includes(inputText.toLowerCase())){
+                    return x
+                }
+            }).map((i:IDados,j:number)=>{
                 return(<ItemDiv 
                     key={i.key}
                     onClick={(e:React.MouseEvent<HTMLDivElement>)=>{

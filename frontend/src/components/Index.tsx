@@ -1,4 +1,4 @@
-﻿import React, {useContext, useEffect} from 'react';
+﻿import React, {useContext, useEffect, useState} from 'react';
 import Header from "./Header";
 import MinhaConta from "./MinhaConta";
 import {AuthContext} from "../contexts/AuthProvider";
@@ -10,11 +10,15 @@ import SeletorVoos from "./SeletorVoos";
 
 const Index = () => {
     const {setToken,token,setUsuarioInfo} = useContext(AuthContext);
+    const [voos, setVoos] = useState<IVoos[]>([]);
     useEffect(() => {
         const api = new Api()
         api.RefreshToken().then(res=>{
             setUsuarioInfo(res.usuário)
             setToken(res.token)
+        })
+        api.ObterVoos().then(res=>{
+            setVoos(res)
         })
         if(token){
             api.VerificarToken(token).then(res=>{
@@ -31,7 +35,7 @@ const Index = () => {
                 </NavLink>
             </Header>
             <CarrouselOndas />
-            <SeletorVoos />
+            <SeletorVoos voos={voos}/>
         </>
     )
 };

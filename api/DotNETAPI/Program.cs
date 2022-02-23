@@ -12,6 +12,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<SqlContext>(opt =>
     opt.UseSqlServer(
         "Persist Security Info=False;User ID=formiga;Initial Catalog=AirlineApp;Server=localhost;Password=formiga123;TrustServerCertificate=True"));
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<ISqlRepo, SqlRepo>();
 builder.Services.AddScoped<IUsuárioService, UsuárioService>();
 builder.Services.AddScoped<ISegurançaService, SegurançaService>();

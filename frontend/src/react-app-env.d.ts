@@ -18,3 +18,8 @@ interface IUserInfos {
     email:string,
     milhas:Float32Array
 }
+
+interface IVoos {
+    key:number,
+    nome:string,
+}

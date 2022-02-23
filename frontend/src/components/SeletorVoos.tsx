@@ -4,12 +4,16 @@ import SeletorLista from "./SeletorLista";
 import {FaPlaneDeparture,FaPlaneArrival} from "react-icons/fa";
 import Botao from "./Botao";
 
-interface IDados {
+interface IVoos {
     key:number,
     nome:string,
 }
 
-const dados:IDados[] = [
+interface Props {
+    voos:IVoos[]
+}
+
+const dados:IVoos[] = [
     {key:1,nome:"CNF - Confins"},
     {key:2,nome:"CGH - Congonhas"},
 ]
@@ -27,15 +31,15 @@ const Container = styled.div`
   align-items: center;
 `
 
-const SeletorVoos = () => {
+const SeletorVoos:React.FC<Props> = (props) => {
     return(<Container>
-        <SeletorLista dados={dados} width={"270px"} height={"50px"} placeholder={
+        <SeletorLista dados={props.voos} width={"270px"} height={"50px"} placeholder={
             <>
             <FaPlaneDeparture color={"black"} fontSize={"22pt"}/>
             <p style={{fontSize:"18pt"}}>Digite a Origem</p>
             </>
         }/>
-        <SeletorLista dados={dados} width={"270px"} height={"50px"} placeholder={
+        <SeletorLista dados={props.voos} width={"270px"} height={"50px"} placeholder={
             <>
                 <FaPlaneArrival color={"black"} fontSize={"22pt"}/>
                 <p style={{fontSize:"18pt"}}>Digite o Destino</p>
